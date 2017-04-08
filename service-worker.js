@@ -5,7 +5,7 @@ self.addEventListener('push', function(event) {
 
   var title = 'Jamba Juice';
   var body = 'Exclusive offer! Buy 1 Get 1 - Redeem Coupon ASAP';
-  var icon = 'images/cpg-foods-icon.png';
+  var icon = 'images/foods-icon.png';
   var tag = 'jambajuice-food';
 
   event.waitUntil(
