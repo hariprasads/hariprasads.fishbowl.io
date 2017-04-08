@@ -60,7 +60,7 @@ function showCurlCommand(mergedEndpoint) {
   var curlCommand = 'curl --header "Authorization: key=' + API_KEY +
     '" --header Content-Type:"application/json" ' + GCM_ENDPOINT +
     ' -d "{\\"registration_ids\\":[\\"' + subscriptionId + '\\"]}"';
-
+  console.log(curlCommand);
   curlCommandDiv.textContent = curlCommand;
 }
 
@@ -91,7 +91,7 @@ function unsubscribe() {
         // We have a subcription, so call unsubscribe on it
         pushSubscription.unsubscribe().then(function() {
           pushButton.disabled = false;
-          pushButton.textContent = 'Enable Push Messages';
+          // pushButton.textContent = 'Enable Push Messages';
           isPushEnabled = false;
         }).catch(function(e) {
           // We failed to unsubscribe, this can lead to
@@ -120,7 +120,7 @@ function subscribe() {
       .then(function(subscription) {
         // The subscription was successful
         isPushEnabled = true;
-        pushButton.textContent = 'Disable Push Messages';
+        // pushButton.textContent = 'Disable Notifications';
         pushButton.disabled = false;
 
         // TODO: Send the subscription subscription.endpoint
@@ -144,6 +144,9 @@ function subscribe() {
           pushButton.disabled = false;
           pushButton.textContent = 'Enable Push Messages';
         }
+      });
+      $(document).ready(function(){
+            $("#secret").hide();
       });
   });
 }
@@ -191,12 +194,15 @@ function initialiseState() {
 
         // Set your UI to show they have subscribed for
         // push messages
-        pushButton.textContent = 'Disable Push Messages';
+        // pushButton.textContent = 'Disable Push Messages';
         isPushEnabled = true;
       })
       .catch(function(err) {
         window.Demo.debug.log('Error during getSubscription()', err);
       });
+      // $(document).ready(function(){
+      //       $("#secret").show();
+      // });
   });
 }
 
@@ -205,8 +211,14 @@ window.addEventListener('load', function() {
   pushButton.addEventListener('click', function() {
     if (isPushEnabled) {
       unsubscribe();
+      $(document).ready(function(){
+            $("#secret").show();
+      });
     } else {
       subscribe();
+      $(document).ready(function(){
+            $("#secret").hide();
+      });
     }
   });
 
