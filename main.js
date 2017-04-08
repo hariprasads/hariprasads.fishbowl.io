@@ -211,14 +211,10 @@ window.addEventListener('load', function() {
   pushButton.addEventListener('click', function() {
     if (isPushEnabled) {
       unsubscribe();
-      $(document).ready(function(){
-            $("#secret").show();
-      });
+
     } else {
       subscribe();
-      $(document).ready(function(){
-            $("#secret").hide();
-      });
+    
     }
   });
 
